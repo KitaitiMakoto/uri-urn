@@ -1,7 +1,7 @@
 URI::URN
 ========
 
-TODO: Write a gem description
+This library adds URN scheme support for standard bundled URI library described in [RFC 4122][rfc4122].
 
 Installation
 ------------
@@ -21,7 +21,39 @@ And then execute:
 Usage
 -----
 
-TODO: Write usage instructions here
+For known Namespace IDs such as UUID, URI parses and returns URNs of them.
+
+    urn = URI.parse('urn:uuid:01787092-e668-4234-bde9-15444f9c5560')
+    urn.class # => URI::URN::UUID
+    urn.scheme # => "urn"
+    urn.nid # => "uuid"
+    urn.nss # => "01787092-e668-4234-bde9-15444f9c5560"
+
+For unknown Namespace URN, returns URI::URN::Generic object.
+
+    URI.parse('urn:dummy:specific-string') # => #<URI::URN::Generic:0x007f3028cc3c10 URL:urn:dummy:specific-string>
+
+### Supported Namespaces
+
+Currently supported:
+
+* UUID
+
+### Adding Namespaces
+
+Define subclass of `URI::URN::Generic` and register it:
+
+    module URI::URN
+      class IETF < Generic
+        # subclass definition here...
+      end
+
+      @@nids['IETF'] = IETF
+    end
+
+Now you can parse IETF URN URI as `URI::URN::IETF`:
+
+    URI.parse('urn:ietf:rfc:4122') # => #<URI::URN::IETF:0x007f6226e02470 URL:urn:ietf:rfc:4122>
 
 Contributing
 ------------
@@ -31,3 +63,5 @@ Contributing
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Merge Request
+
+[rfc4122]: http://www.ietf.org/rfc/rfc4122.txt

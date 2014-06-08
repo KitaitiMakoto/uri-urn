@@ -3,8 +3,8 @@ Gem::Specification.new do |spec|
   spec.version       = '0.0.1'
   spec.authors       = ["KITAITI Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Adds URN Scheme support to URI lib.}
+  spec.description   = %q{This library adds URN scheme support for standard bundled URI library described in RFC 4122.}
   spec.homepage      = 'https://gitorious.org/uri-ext'
   spec.license       = "Ruby"
 
