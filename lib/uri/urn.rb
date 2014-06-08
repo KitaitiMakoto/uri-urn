@@ -95,6 +95,8 @@ module URI
         if value !~ /\A#{NSS_PATTERN}\z/o
           raise InvalidComponentError, "bad component(expected nss component: #{value})"
         end
+
+        return true
       end
     end
 
