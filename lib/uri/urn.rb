@@ -4,17 +4,12 @@ module URI
   module URN
     COMPONENT = [:scheme, :nid, :nss]
 
-    NID_PATTERN = '[\w\d][\w\d\-]{0,31}'.freeze
-    URN_CHARS_PATTERN = "[\\w\\d()+,\\-.:=@;$_!*%/?#]|#{URI::PATTERN::ESCAPED}".freeze
-    NSS_PATTERN = "(?:#{URN_CHARS_PATTERN})+".freeze
-    URN_REGEXP = Regexp.new("\\A(?<nid>#{NID_PATTERN}):(?<nss>#{NSS_PATTERN})\\z").freeze
-
     def self.component
       COMPONENT
     end
 
     def self.new(*arg)
-      nid = (md = arg[6].match(URN_REGEXP)) && md['nid']
+      nid = (md = arg[6].match(Generic::URN_REGEXP)) && md['nid']
       @@nids[nid.to_s.upcase].new(*arg)
     end
 
@@ -25,6 +20,11 @@ module URI
 
     class Generic < Generic
       COMPONENT = URN::COMPONENT
+
+      NID_PATTERN = '[\w\d][\w\d\-]{0,31}'.freeze
+      URN_CHARS_PATTERN = "[\\w\\d()+,\\-.:=@;$_!*%/?#]|#{URI::PATTERN::ESCAPED}".freeze
+      NSS_PATTERN = "(?:#{URN_CHARS_PATTERN})+".freeze
+      URN_REGEXP = Regexp.new("\\A(?<nid>#{NID_PATTERN}):(?<nss>#{NSS_PATTERN})\\z").freeze
 
       attr_reader :nid, :nss
 
@@ -92,7 +92,7 @@ module URI
       end
 
       def check_nss(value)
-        if value !~ /\A#{NSS_PATTERN}\z/o
+        if value !~ /\A#{self.class::NSS_PATTERN}\z/ # Do not set `o'(optimize) switch. This regepx may be overwritten at subclasses
           raise InvalidComponentError, "bad component(expected nss component: #{value})"
         end
 
