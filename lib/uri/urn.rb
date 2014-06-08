@@ -46,7 +46,9 @@ module URI
 
       def initialize(*arg)
         super(*arg)
-        self.opaque = @opaque
+        if arg[-1]
+          self.opaque = @opaque
+        end
       end
 
       def nid=(value)
