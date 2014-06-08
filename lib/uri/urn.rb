@@ -30,6 +30,7 @@ module URI
 
       def self.build(args)
         tmp = Util.make_components_hash(self, args)
+        tmp[:scheme] = 'urn'
         tmp[:opaque] = "%{nid}:%{nss}" % tmp
 
         return super(tmp)
