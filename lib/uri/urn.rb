@@ -29,6 +29,14 @@ module URI
       attr_reader :nid, :nss
 
       def self.build(args)
+        nid = self.to_s.sub(/\A.*::/, '').downcase
+        unless nid == 'generic'
+          if args.kind_of?(Array)
+            args = [nid] + args
+          elsif args.kind_of?(Hash)
+            args[:nid] = nid
+          end
+        end
         tmp = Util.make_components_hash(self, args)
         tmp[:scheme] = 'urn'
         tmp[:opaque] = "%{nid}:%{nss}" % tmp
