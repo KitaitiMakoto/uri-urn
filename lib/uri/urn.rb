@@ -119,3 +119,5 @@ module URI
 
   @@schemes['URN'] = URN
 end
+
+require 'uri/urn/uuid'

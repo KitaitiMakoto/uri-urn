@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://gitorious.org/uri-ext'
   spec.license       = "Ruby"
 
-  spec.test_files    = ['test/uri/test_urn.rb']
+  spec.test_files    = Dir.glob('test/**/test_*.rb')
   spec.require_paths = ["lib"]
   spec.extra_rdoc_files = %w[README.markdown CHANGELOG.markdown COPYING BSDL]
   spec.files = spec.require_paths.inject([]) {|files, dir|
