@@ -15,7 +15,7 @@ module URI
 
     def self.build(args)
       tmp = Util.make_components_hash(self, args)
-      @@nids[tmp[:nid].to_s.upcase].build(args)
+      @@nids[tmp[:nid].to_s.upcase].build(tmp)
     end
 
     class Generic < Generic
