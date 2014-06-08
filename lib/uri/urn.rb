@@ -14,13 +14,13 @@ module URI
     end
 
     def self.new(*arg)
-      md = arg[6].match(URN_REGEXP)
-      @@nids[md['nid']].new(*arg)
+      nid = (md = arg[6].match(URN_REGEXP)) && md['nid']
+      @@nids[nid.to_s.upcase].new(*arg)
     end
 
     def self.build(args)
       tmp = Util.make_components_hash(self, args)
-      @@nids[tmp[:nid]].build(args)
+      @@nids[tmp[:nid].to_s.upcase].build(args)
     end
 
     class Generic < Generic
