@@ -38,6 +38,7 @@ For unknown Namespace URN, returns URI::URN::Generic object.
 Currently supported:
 
 * UUID
+* ISBN
 
 ### Adding Namespaces
 
