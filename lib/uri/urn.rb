@@ -121,3 +121,4 @@ module URI
 end
 
 require 'uri/urn/uuid'
+require 'uri/urn/isbn'
