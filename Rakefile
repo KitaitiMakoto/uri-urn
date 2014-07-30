@@ -1,18 +1,20 @@
-require 'rake/testtask'
-require 'rdoc/task'
-require 'rubygems/tasks'
+require 'bundler/gem_tasks'
 
-task :default => :test
+namespace :test do
+  desc 'Runs only the units in this project'
+  task :units do
+    $LOAD_PATH.unshift('lib', 'test')
+    Dir.glob('./test/**/test_*.rb') { |f| require f }
+  end
 
-GEMSPEC = Gem::Specification.load(File.join(__dir__, 'uri-urn.gemspec'))
+  desc 'Runs only the specs in this project'
+  task :specs do
+    $LOAD_PATH.unshift('lib', 'spec')
+    Dir.glob('./spec/**/*_spec.rb') { |f| require f }
+  end
 
-Rake::TestTask.new do |task|
-  task.test_files = GEMSPEC.test_files
+  desc 'Runs all of the tests within this project'
+  task :all => [:units, :specs]
 end
 
-RDoc::Task.new do |task|
-  task.rdoc_files.include GEMSPEC.require_paths.inject([]) {|files, dir| files + Dir.glob("#{dir}/**/*.rb")}, GEMSPEC.extra_rdoc_files
-  task.main = 'README.markdown'
-end
-
-Gem::Tasks.new
+task :default => 'test:all'
