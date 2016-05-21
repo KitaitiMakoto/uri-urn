@@ -1,7 +1,7 @@
 URI::URN
 ========
 
-This library adds URN scheme support for standard bundled URI library described in [RFC 4122][rfc4122].
+This library adds URN scheme support for standard bundled URI library described in [RFC 2141][rfc2141].
 
 Installation
 ------------
@@ -65,4 +65,5 @@ Contributing
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Merge Request
 
+[rfc2141]: http://www.ietf.org/rfc/rfc2141.txt
 [rfc4122]: http://www.ietf.org/rfc/rfc4122.txt
