@@ -37,7 +37,7 @@ For unknown Namespace URN, returns URI::URN::Generic object.
 
 Currently supported:
 
-* UUID
+* UUID([RFC 4122][rfc4122])
 * ISBN
 
 ### Adding Namespaces
