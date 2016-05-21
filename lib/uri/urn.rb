@@ -9,7 +9,7 @@ module URI
     end
 
     def self.new(*arg)
-      nid = (md = arg[6].match(Generic::URN_REGEXP)) && md['nid']
+      nid = (md = arg[6].to_s.match(Generic::URN_REGEXP)) && md['nid']
       @@nids[nid.to_s.upcase].new(*arg)
     end
 
