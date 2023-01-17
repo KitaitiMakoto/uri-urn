@@ -117,7 +117,11 @@ module URI
     end
   end
 
-  @@schemes['URN'] = URN
+  if respond_to? :register_scheme
+    register_scheme 'URN', URN
+  else
+    @@schemes['URN'] = URN
+  end
 end
 
 require 'uri/urn/uuid'
