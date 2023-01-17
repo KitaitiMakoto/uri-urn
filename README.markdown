@@ -29,6 +29,13 @@ For known Namespace IDs such as UUID, URI parses and returns URNs of them.
     urn.nid # => "uuid"
     urn.nss # => "01787092-e668-4234-bde9-15444f9c5560"
 
+    isbn = URI.parse('urn:isbn:978-4274064616')
+    isbn.class # => URI::URN::ISBN
+    isbn.scheme # => "urn"
+    isbn.nid #=> "isbn"
+    isbn.nss #=> "978-4274064616"
+    isbn.normalize! # => "9784274064616"
+
 For unknown Namespace URN, returns URI::URN::Generic object.
 
     URI.parse('urn:dummy:specific-string') # => #<URI::URN::Generic:0x007f3028cc3c10 URL:urn:dummy:specific-string>
