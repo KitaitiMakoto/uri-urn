@@ -16,4 +16,3 @@ module URI
     @@nids['ISBN'] = ISBN
   end
 end
-
