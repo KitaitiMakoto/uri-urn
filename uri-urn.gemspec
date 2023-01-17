@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "uri-urn"
-  spec.version       = '0.0.3'
+  spec.version       = '0.0.4'
   spec.authors       = ["KITAITI Makoto"]
   spec.email         = ["KitaitiMakoto@gmail.com"]
   spec.summary       = %q{Adds URN Scheme support to URI lib.}
